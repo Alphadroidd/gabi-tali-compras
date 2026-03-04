@@ -1,2 +1,2 @@
 # gabi-tali-compras
-Lista de compras
+  Lista de compras
