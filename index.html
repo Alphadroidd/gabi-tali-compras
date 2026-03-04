@@ -9,24 +9,26 @@
 <meta name="apple-mobile-web-app-title" content="Gabi & Tali">
 <meta name="theme-color" content="#1a1a2e">
 
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+
 <!-- Firebase -->
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
   import { getDatabase, ref, set, get, push, remove, update, onValue } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
 
   const firebaseConfig = {
-    apiKey: "AIzaSyBf8HkEzNLQsAf_4V7ZSP3dLGFLLyC4yVo",
-    authDomain: "tah-joh-compras.firebaseapp.com",
-    databaseURL: "https://tah-joh-compras-default-rtdb.firebaseio.com",
-    projectId: "tah-joh-compras",
-    storageBucket: "tah-joh-compras.appspot.com",
-    messagingSenderId: "123456789",
-    appId: "1:123456789:web:abcdef"
+    apiKey: "AIzaSyDrdQK4BdemjUDTtR1QsNCAqrifEzIluSg",
+    authDomain: "gabi-tali-compras.firebaseapp.com",
+    databaseURL: "https://gabi-tali-compras-default-rtdb.firebaseio.com",
+    projectId: "gabi-tali-compras",
+    storageBucket: "gabi-tali-compras.firebasestorage.app",
+    messagingSenderId: "1009003970792",
+    appId: "1:1009003970792:web:62a57cb64222ef5795095d"
   };
-
-  // NOTE: Replace with your own Firebase config!
-  // These are placeholder values. Create a new Firebase project at firebase.google.com
-  // and paste your config here.
 
   let app, db;
   try {
@@ -86,7 +88,6 @@
     overflow-x: hidden;
   }
 
-  /* Background decoration */
   body::before {
     content: '';
     position: fixed;
@@ -110,7 +111,6 @@
     z-index: 0;
   }
 
-  /* HEADER */
   .header {
     position: sticky;
     top: 0;
@@ -138,15 +138,8 @@
     flex: 1;
   }
 
-  .logo-svg {
-    width: 42px;
-    height: 42px;
-    flex-shrink: 0;
-  }
-
-  .logo-text {
-    line-height: 1;
-  }
+  .logo-svg { width: 42px; height: 42px; flex-shrink: 0; }
+  .logo-text { line-height: 1; }
 
   .logo-title {
     font-family: 'Playfair Display', serif;
@@ -177,7 +170,6 @@
 
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
-  /* NAV TABS */
   .nav {
     background: rgba(15,15,26,0.95);
     backdrop-filter: blur(20px);
@@ -190,11 +182,7 @@
     padding-bottom: env(safe-area-inset-bottom);
   }
 
-  .nav-inner {
-    max-width: 480px;
-    margin: 0 auto;
-    display: flex;
-  }
+  .nav-inner { max-width: 480px; margin: 0 auto; display: flex; }
 
   .nav-btn {
     flex: 1;
@@ -215,13 +203,7 @@
   }
 
   .nav-btn.active { color: #4f9ef8; }
-
-  .nav-btn-icon {
-    font-size: 22px;
-    line-height: 1;
-    transition: transform 0.2s;
-  }
-
+  .nav-btn-icon { font-size: 22px; line-height: 1; transition: transform 0.2s; }
   .nav-btn.active .nav-btn-icon { transform: scale(1.1); }
 
   .nav-badge {
@@ -241,7 +223,6 @@
     padding: 0 4px;
   }
 
-  /* MAIN */
   .main {
     max-width: 480px;
     margin: 0 auto;
@@ -250,20 +231,12 @@
     z-index: 1;
   }
 
-  /* SCREENS */
   .screen { display: none; }
   .screen.active { display: block; animation: fadeIn 0.2s ease; }
   @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
 
-  /* CARDS */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
 
-  /* ALERT BANNER */
   .alert-banner {
     background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(245,158,11,0.1));
     border: 1px solid rgba(239,68,68,0.3);
@@ -272,19 +245,11 @@
     margin-bottom: 16px;
     display: none;
   }
-
   .alert-banner.show { display: flex; align-items: center; gap: 10px; }
-
   .alert-banner-text { font-size: 13px; line-height: 1.4; }
   .alert-banner-text strong { color: var(--rose); }
 
-  /* SECTION HEADER */
-  .section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-  }
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
 
   .section-title {
     font-family: 'Playfair Display', serif;
@@ -293,11 +258,7 @@
     color: var(--text);
   }
 
-  /* SEARCH BAR */
-  .search-bar {
-    position: relative;
-    margin-bottom: 14px;
-  }
+  .search-bar { position: relative; margin-bottom: 14px; }
 
   .search-bar input {
     width: 100%;
@@ -311,7 +272,6 @@
     outline: none;
     transition: border-color 0.2s;
   }
-
   .search-bar input:focus { border-color: #4f9ef8; }
   .search-bar input::placeholder { color: var(--text3); }
 
@@ -324,15 +284,7 @@
     opacity: 0.5;
   }
 
-  /* FILTER CHIPS */
-  .chips {
-    display: flex;
-    gap: 6px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    scrollbar-width: none;
-    margin-bottom: 14px;
-  }
+  .chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; margin-bottom: 14px; }
   .chips::-webkit-scrollbar { display: none; }
 
   .chip {
@@ -349,15 +301,8 @@
     transition: all 0.2s;
     white-space: nowrap;
   }
+  .chip.active { background: #4f9ef8; border-color: #4f9ef8; color: #ffffff; font-weight: 600; }
 
-  .chip.active {
-    background: #4f9ef8;
-    border-color: #4f9ef8;
-    color: #ffffff;
-    font-weight: 600;
-  }
-
-  /* ADD BUTTON */
   .btn-add {
     width: 100%;
     background: linear-gradient(135deg, #4f9ef8, #2563eb);
@@ -378,7 +323,6 @@
   }
   .btn-add:active { transform: scale(0.97); opacity: 0.9; }
 
-  /* ITEM ROW */
   .item-row {
     display: flex;
     align-items: center;
@@ -389,7 +333,6 @@
     animation: slideIn 0.25s ease;
   }
   @keyframes slideIn { from{opacity:0;transform:translateX(-8px)} to{opacity:1;transform:translateX(0)} }
-
   .item-row:last-child { border-bottom: none; }
   .item-row:active { background: rgba(255,255,255,0.03); }
 
@@ -407,12 +350,7 @@
     transition: all 0.2s;
     background: transparent;
   }
-
-  .item-check.done {
-    background: var(--mint);
-    border-color: var(--mint);
-  }
-
+  .item-check.done { background: var(--mint); border-color: var(--mint); }
   .item-row.done-row .item-name { text-decoration: line-through; opacity: 0.5; }
 
   .item-info { flex: 1; min-width: 0; }
@@ -437,22 +375,11 @@
     flex-wrap: wrap;
   }
 
-  .item-tag {
-    background: rgba(255,255,255,0.06);
-    border-radius: 4px;
-    padding: 1px 6px;
-    font-size: 10px;
-  }
-
+  .item-tag { background: rgba(255,255,255,0.06); border-radius: 4px; padding: 1px 6px; font-size: 10px; }
   .item-tag.urgent { background: rgba(239,68,68,0.2); color: var(--rose); }
   .item-tag.from-stock { background: rgba(167,139,250,0.2); color: var(--lavender); }
 
-  .item-actions {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-shrink: 0;
-  }
+  .item-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 
   .btn-icon {
     width: 32px;
@@ -471,7 +398,6 @@
   .btn-icon:hover { background: rgba(255,255,255,0.12); }
   .btn-icon.danger:hover { background: rgba(239,68,68,0.2); color: var(--rose); }
 
-  /* STOCK LEVEL BADGE */
   .stock-badge {
     flex-shrink: 0;
     padding: 4px 10px;
@@ -484,17 +410,14 @@
     white-space: nowrap;
   }
   .stock-badge:active { transform: scale(0.95); }
-
   .stock-cheio { background: rgba(16,185,129,0.15); color: var(--mint); }
   .stock-ok { background: rgba(96,165,250,0.15); color: var(--blue); }
   .stock-baixo { background: rgba(245,158,11,0.2); color: var(--yellow); }
   .stock-zerado { background: rgba(239,68,68,0.2); color: var(--rose); }
 
-  /* STOCK ITEM ROW - highlighting */
   .item-row.stock-baixo-row { border-left: 3px solid var(--yellow); }
   .item-row.stock-zerado-row { border-left: 3px solid var(--rose); }
 
-  /* SEND TO LIST BUTTON */
   .btn-send-list {
     flex-shrink: 0;
     padding: 5px 10px;
@@ -510,17 +433,11 @@
   }
   .btn-send-list:hover { background: rgba(167,139,250,0.2); }
 
-  /* EMPTY STATE */
-  .empty {
-    text-align: center;
-    padding: 48px 24px;
-    color: var(--text3);
-  }
+  .empty { text-align: center; padding: 48px 24px; color: var(--text3); }
   .empty-icon { font-size: 48px; margin-bottom: 12px; }
   .empty-text { font-size: 15px; }
   .empty-sub { font-size: 13px; margin-top: 6px; opacity: 0.7; }
 
-  /* MODAL */
   .modal-overlay {
     position: fixed;
     inset: 0;
@@ -582,19 +499,12 @@
     appearance: none;
   }
   .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: #4f9ef8; }
-
   .form-select option { background: var(--surface2); }
 
   .form-row { display: flex; gap: 10px; }
   .form-row .form-group { flex: 1; }
 
-  .form-check-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    padding: 10px 0;
-  }
+  .form-check-row { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 10px 0; }
 
   .form-check {
     width: 20px;
@@ -612,11 +522,7 @@
   }
   .form-check.checked { background: #4f9ef8; border-color: #4f9ef8; }
 
-  .modal-footer {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-  }
+  .modal-footer { display: flex; gap: 10px; margin-top: 20px; }
 
   .btn-cancel {
     flex: 1;
@@ -645,31 +551,6 @@
   }
   .btn-save:active { opacity: 0.85; }
 
-  /* CATEGORY GRID */
-  .cat-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
-    margin-bottom: 16px;
-  }
-
-  .cat-card {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 12px 6px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  .cat-card:active { transform: scale(0.95); }
-  .cat-card.active { border-color: #4f9ef8; background: rgba(79,158,248,0.1); }
-
-  .cat-emoji { font-size: 24px; }
-  .cat-name { font-size: 10px; color: var(--text2); margin-top: 4px; }
-  .cat-count { font-size: 10px; color: var(--text3); margin-top: 2px; }
-
-  /* MANAGE CATEGORIES */
   .manage-row {
     display: flex;
     align-items: center;
@@ -704,7 +585,6 @@
     flex-shrink: 0;
   }
 
-  /* EMOJI PICKER */
   .emoji-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -731,7 +611,6 @@
   .emoji-opt.selected { border-color: #4f9ef8; background: rgba(79,158,248,0.15); }
   .emoji-opt:active { transform: scale(0.9); }
 
-  /* TOAST */
   .toast {
     position: fixed;
     bottom: 80px;
@@ -752,15 +631,8 @@
   }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-  /* LOADER */
-  .loader {
-    text-align: center;
-    padding: 32px;
-    color: var(--text3);
-    font-size: 13px;
-  }
+  .loader { text-align: center; padding: 32px; color: var(--text3); font-size: 13px; }
 
-  /* SECTION DIVIDER */
   .section-divider {
     font-size: 11px;
     font-weight: 600;
@@ -770,12 +642,8 @@
     padding: 14px 0 8px;
   }
 
-  /* Quantity input */
-  .qty-input {
-    width: 70px;
-  }
+  .qty-input { width: 70px; }
 
-  /* Color dots for categories */
   .color-swatch {
     width: 28px;
     height: 28px;
@@ -786,12 +654,7 @@
     flex-shrink: 0;
   }
   .color-swatch.selected { border-color: white; transform: scale(1.2); }
-
-  .color-row {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
+  .color-row { display: flex; gap: 8px; flex-wrap: wrap; }
 
   .preview-card {
     background: var(--surface2);
@@ -824,17 +687,8 @@
     cursor: pointer;
     transition: all 0.15s;
   }
-
   .btn-primary-sm { background: #4f9ef8; color: #ffffff; }
   .btn-danger-sm { background: rgba(239,68,68,0.15); color: var(--rose); border: 1px solid rgba(239,68,68,0.2); }
-
-  /* swipe-to-delete hint */
-  .swipe-hint {
-    font-size: 11px;
-    color: var(--text3);
-    text-align: center;
-    padding: 8px;
-  }
 </style>
 </head>
 <body>
@@ -844,24 +698,17 @@
   <div class="header-inner">
     <div class="logo-wrap">
       <svg class="logo-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <!-- Glow -->
         <circle cx="40" cy="40" r="36" fill="rgba(232,184,109,0.08)"/>
-        <!-- Person 1 (Tali) -->
         <circle cx="28" cy="24" r="8" fill="#4f9ef8" opacity="0.9"/>
         <path d="M16 48 Q16 36 28 36 Q35 36 35 42" fill="none" stroke="#4f9ef8" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
-        <!-- Person 2 (Gabi) -->
         <circle cx="52" cy="24" r="8" fill="#a78bfa" opacity="0.9"/>
         <path d="M64 48 Q64 36 52 36 Q45 36 45 42" fill="none" stroke="#a78bfa" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
-        <!-- Kiss lines -->
         <path d="M35 32 Q40 36 45 32" fill="none" stroke="#e88d8d" stroke-width="2" stroke-linecap="round"/>
-        <!-- Heart -->
         <path d="M40 27 C40 27 37 23 34 25 C31 27 32 31 40 36 C48 31 49 27 46 25 C43 23 40 27 40 27Z" fill="#e88d8d"/>
-        <!-- Cart -->
         <rect x="22" y="56" width="36" height="14" rx="4" fill="none" stroke="#4f9ef8" stroke-width="2.5"/>
         <circle cx="30" cy="73" r="3" fill="#4f9ef8"/>
         <circle cx="50" cy="73" r="3" fill="#4f9ef8"/>
         <path d="M18 52 L22 56" stroke="#4f9ef8" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- Cart items -->
         <rect x="27" y="59" width="6" height="6" rx="2" fill="#7dd3b0" opacity="0.7"/>
         <rect x="37" y="59" width="6" height="6" rx="2" fill="#a78bfa" opacity="0.7"/>
         <rect x="47" y="59" width="6" height="6" rx="2" fill="#e88d8d" opacity="0.7"/>
@@ -875,62 +722,44 @@
   </div>
 </header>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- MAIN -->
 <main class="main">
 
-  <!-- ===== LISTA DE COMPRAS ===== -->
+  <!-- LISTA -->
   <div class="screen active" id="screen-lista">
     <div id="alertBanner" class="alert-banner">
       <span>🚨</span>
       <div class="alert-banner-text" id="alertText"></div>
     </div>
-
-    <button class="btn-add" onclick="openAddItem()">
-      <span>+</span> Adicionar item
-    </button>
-
+    <button class="btn-add" onclick="openAddItem()"><span>+</span> Adicionar item</button>
     <div class="search-bar">
       <span class="search-icon">🔍</span>
       <input type="text" id="searchLista" placeholder="Buscar na lista..." oninput="renderLista()">
     </div>
-
     <div class="chips" id="chipsFiltroLista">
       <button class="chip active" onclick="setFiltroLista('todos', this)">Todos</button>
       <button class="chip" onclick="setFiltroLista('pendentes', this)">Pendentes</button>
       <button class="chip" onclick="setFiltroLista('urgentes', this)">🚨 Urgentes</button>
       <button class="chip" onclick="setFiltroLista('feitos', this)">Feitos</button>
     </div>
-
-    <div class="card" id="listaContainer">
-      <div class="loader">Carregando...</div>
-    </div>
-
+    <div class="card" id="listaContainer"><div class="loader">Carregando...</div></div>
     <div style="margin-top:12px; display:flex; gap:8px;">
-      <button class="btn-sm btn-danger-sm" onclick="limparFeitos()" style="flex:1; padding:11px;">
-        🗑️ Limpar feitos
-      </button>
+      <button class="btn-sm btn-danger-sm" onclick="limparFeitos()" style="flex:1; padding:11px;">🗑️ Limpar feitos</button>
     </div>
   </div>
 
-  <!-- ===== ESTOQUE ===== -->
+  <!-- ESTOQUE -->
   <div class="screen" id="screen-estoque">
     <div id="estoqueAlertBanner" class="alert-banner">
       <span>⚠️</span>
       <div class="alert-banner-text" id="estoqueAlertText"></div>
     </div>
-
-    <button class="btn-add" onclick="openAddEstoque()">
-      <span>+</span> Cadastrar produto
-    </button>
-
+    <button class="btn-add" onclick="openAddEstoque()"><span>+</span> Cadastrar produto</button>
     <div class="search-bar">
       <span class="search-icon">🔍</span>
       <input type="text" id="searchEstoque" placeholder="Buscar no estoque..." oninput="renderEstoque()">
     </div>
-
     <div class="chips" id="chipsFiltroEstoque">
       <button class="chip active" onclick="setFiltroEstoque('todos', this)">Todos</button>
       <button class="chip" onclick="setFiltroEstoque('cheio', this)">🟢 Cheio</button>
@@ -938,22 +767,16 @@
       <button class="chip" onclick="setFiltroEstoque('baixo', this)">🟡 Baixo</button>
       <button class="chip" onclick="setFiltroEstoque('zerado', this)">🔴 Zerado</button>
     </div>
-
-    <div class="card" id="estoqueContainer">
-      <div class="loader">Carregando...</div>
-    </div>
+    <div class="card" id="estoqueContainer"><div class="loader">Carregando...</div></div>
   </div>
 
-  <!-- ===== GERENCIAR CATEGORIAS ===== -->
+  <!-- GERENCIAR -->
   <div class="screen" id="screen-gerenciar">
     <div class="section-header">
       <div class="section-title">Categorias</div>
       <button class="btn-sm btn-primary-sm" onclick="openAddCat()">+ Nova</button>
     </div>
-
-    <div class="card" id="catListContainer">
-      <div class="loader">Carregando...</div>
-    </div>
+    <div class="card" id="catListContainer"><div class="loader">Carregando...</div></div>
   </div>
 
 </main>
@@ -978,17 +801,15 @@
   </div>
 </nav>
 
-<!-- ===== MODAL ITEM LISTA ===== -->
+<!-- MODAL ITEM -->
 <div class="modal-overlay" id="modalItem">
   <div class="modal">
     <div class="modal-title" id="modalItemTitle">Novo item</div>
     <input type="hidden" id="editItemId">
-
     <div class="form-group">
       <label class="form-label">Nome</label>
       <input class="form-input" id="inputItemNome" placeholder="Ex: Arroz, Sabonete...">
     </div>
-
     <div class="form-row">
       <div class="form-group">
         <label class="form-label">Quantidade</label>
@@ -997,33 +818,24 @@
       <div class="form-group">
         <label class="form-label">Unidade</label>
         <select class="form-select" id="inputItemUnit">
-          <option value="un">un</option>
-          <option value="kg">kg</option>
-          <option value="g">g</option>
-          <option value="L">L</option>
-          <option value="ml">ml</option>
-          <option value="cx">cx</option>
-          <option value="pct">pct</option>
-          <option value="dz">dz</option>
+          <option value="un">un</option><option value="kg">kg</option><option value="g">g</option>
+          <option value="L">L</option><option value="ml">ml</option><option value="cx">cx</option>
+          <option value="pct">pct</option><option value="dz">dz</option>
         </select>
       </div>
     </div>
-
     <div class="form-group">
       <label class="form-label">Categoria</label>
       <select class="form-select" id="inputItemCat"></select>
     </div>
-
     <div class="form-group">
       <label class="form-label">Observações</label>
       <input class="form-input" id="inputItemObs" placeholder="Marca preferida, tamanho...">
     </div>
-
     <label class="form-check-row" onclick="toggleUrgente()">
       <div class="form-check" id="checkUrgente">!</div>
       <span style="font-size:14px;">🚨 Urgente (precisa comprar logo)</span>
     </label>
-
     <div class="modal-footer">
       <button class="btn-cancel" onclick="closeModal('modalItem')">Cancelar</button>
       <button class="btn-save" onclick="saveItem()">Salvar</button>
@@ -1031,17 +843,15 @@
   </div>
 </div>
 
-<!-- ===== MODAL PRODUTO ESTOQUE ===== -->
+<!-- MODAL ESTOQUE -->
 <div class="modal-overlay" id="modalEstoque">
   <div class="modal">
     <div class="modal-title" id="modalEstoqueTitle">Novo produto</div>
     <input type="hidden" id="editEstoqueId">
-
     <div class="form-group">
       <label class="form-label">Nome do produto</label>
       <input class="form-input" id="inputEstoqueNome" placeholder="Ex: Arroz, Shampoo...">
     </div>
-
     <div class="form-row">
       <div class="form-group">
         <label class="form-label">Quantidade</label>
@@ -1050,23 +860,16 @@
       <div class="form-group">
         <label class="form-label">Unidade</label>
         <select class="form-select" id="inputEstoqueUnit">
-          <option value="un">un</option>
-          <option value="kg">kg</option>
-          <option value="g">g</option>
-          <option value="L">L</option>
-          <option value="ml">ml</option>
-          <option value="cx">cx</option>
-          <option value="pct">pct</option>
-          <option value="dz">dz</option>
+          <option value="un">un</option><option value="kg">kg</option><option value="g">g</option>
+          <option value="L">L</option><option value="ml">ml</option><option value="cx">cx</option>
+          <option value="pct">pct</option><option value="dz">dz</option>
         </select>
       </div>
     </div>
-
     <div class="form-group">
       <label class="form-label">Categoria</label>
       <select class="form-select" id="inputEstoqueCat"></select>
     </div>
-
     <div class="form-group">
       <label class="form-label">Nível de estoque</label>
       <select class="form-select" id="inputEstoqueNivel">
@@ -1076,12 +879,10 @@
         <option value="zerado">🔴 Zerado</option>
       </select>
     </div>
-
     <div class="form-group">
       <label class="form-label">Observações</label>
       <input class="form-input" id="inputEstoqueObs" placeholder="Marca, tipo...">
     </div>
-
     <div class="modal-footer">
       <button class="btn-cancel" onclick="closeModal('modalEstoque')">Cancelar</button>
       <button class="btn-save" onclick="saveEstoque()">Salvar</button>
@@ -1089,27 +890,23 @@
   </div>
 </div>
 
-<!-- ===== MODAL CATEGORIA ===== -->
+<!-- MODAL CATEGORIA -->
 <div class="modal-overlay" id="modalCat">
   <div class="modal">
     <div class="modal-title" id="modalCatTitle">Nova categoria</div>
     <input type="hidden" id="editCatId">
-
     <div class="form-group">
       <label class="form-label">Nome</label>
       <input class="form-input" id="inputCatNome" placeholder="Ex: Bebidas, Pet, Beleza...">
     </div>
-
     <div class="form-group">
       <label class="form-label">Emoji</label>
       <div class="emoji-grid" id="emojiGrid"></div>
     </div>
-
     <div class="form-group">
       <label class="form-label">Cor</label>
       <div class="color-row" id="colorRow"></div>
     </div>
-
     <div class="preview-card" id="catPreview">
       <div class="preview-emoji-box" id="previewBox" style="background: rgba(79,158,248,0.15)">🛒</div>
       <div>
@@ -1117,7 +914,6 @@
         <div style="font-size:11px; color:var(--text3)">Pré-visualização</div>
       </div>
     </div>
-
     <div class="modal-footer">
       <button class="btn-cancel" onclick="closeModal('modalCat')">Cancelar</button>
       <button class="btn-save" onclick="saveCat()">Salvar</button>
@@ -1126,10 +922,6 @@
 </div>
 
 <script>
-// ============================================================
-// DATA LAYER (Firebase + localStorage fallback)
-// ============================================================
-
 const DEFAULT_CATS = [
   { id: 'c1', nome: 'Hortifruti', emoji: '🥦', cor: '#7dd3b0', padrao: true },
   { id: 'c2', nome: 'Carnes', emoji: '🥩', cor: '#e88d8d', padrao: true },
@@ -1143,46 +935,32 @@ const DEFAULT_CATS = [
   { id: 'c10', nome: 'Outros', emoji: '📦', cor: '#6b6480', padrao: true },
 ];
 
-let db_lista = {};    // { id: item }
-let db_estoque = {};  // { id: produto }
-let db_cats = {};     // { id: cat }
+let db_lista = {}, db_estoque = {}, db_cats = {};
+let filtroLista = 'todos', filtroEstoque = 'todos';
+let selectedEmoji = '🛒', selectedColor = '#4f9ef8';
+let urgente = false, editCatIsDefault = false;
 
-let filtroLista = 'todos';
-let filtroEstoque = 'todos';
-let selectedEmoji = '🛒';
-let selectedColor = '#4f9ef8';
-let urgente = false;
-let editCatIsDefault = false;
-
-// Firebase shortcuts
 const useFirebase = () => window.firebaseReady && window.firebaseDB;
-
-function fbRef(path) {
-  return window.firebaseRef(window.firebaseDB, path);
-}
+function fbRef(path) { return window.firebaseRef(window.firebaseDB, path); }
 
 async function fbGet(path) {
   if (!useFirebase()) return null;
   const snap = await window.firebaseGet(fbRef(path));
   return snap.exists() ? snap.val() : null;
 }
-
 async function fbSet(path, val) {
   if (!useFirebase()) { lsSave(); return; }
   await window.firebaseSet(fbRef(path), val);
 }
-
 async function fbRemove(path) {
   if (!useFirebase()) { lsSave(); return; }
   await window.firebaseRemove(fbRef(path));
 }
-
 async function fbUpdate(path, val) {
   if (!useFirebase()) { lsSave(); return; }
   await window.firebaseUpdate(fbRef(path), val);
 }
 
-// LocalStorage fallback
 function lsSave() {
   localStorage.setItem('gt_lista', JSON.stringify(db_lista));
   localStorage.setItem('gt_estoque', JSON.stringify(db_estoque));
@@ -1202,25 +980,13 @@ function lsLoad() {
   }
 }
 
-function uid() {
-  return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
-}
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
 
-// ============================================================
-// INIT
-// ============================================================
+window.addEventListener('firebaseLoaded', async () => { await initData(); });
 
-window.addEventListener('firebaseLoaded', async () => {
-  await initData();
-});
-
-// If firebase doesn't load in 3s, use localStorage
 setTimeout(() => {
   if (!window.firebaseReady) {
-    console.warn('Firebase not available, using localStorage');
-    lsLoad();
-    render();
-    setSyncStatus('offline');
+    lsLoad(); render(); setSyncStatus('offline');
   }
 }, 3000);
 
@@ -1228,7 +994,6 @@ async function initData() {
   setSyncStatus('syncing');
   try {
     if (useFirebase()) {
-      // Load cats
       let cats = await fbGet('gabi-tali/cats');
       if (!cats) {
         cats = {};
@@ -1236,59 +1001,36 @@ async function initData() {
         await fbSet('gabi-tali/cats', cats);
       }
       db_cats = cats;
-
-      // Load lista
       db_lista = (await fbGet('gabi-tali/lista')) || {};
-
-      // Load estoque
       db_estoque = (await fbGet('gabi-tali/estoque')) || {};
 
-      // Real-time listeners
       window.firebaseOnValue(fbRef('gabi-tali/lista'), snap => {
         db_lista = snap.exists() ? snap.val() : {};
-        renderLista();
-        updateBadges();
+        renderLista(); updateBadges();
       });
       window.firebaseOnValue(fbRef('gabi-tali/estoque'), snap => {
         db_estoque = snap.exists() ? snap.val() : {};
-        renderEstoque();
-        updateBadges();
+        renderEstoque(); updateBadges();
       });
       window.firebaseOnValue(fbRef('gabi-tali/cats'), snap => {
         db_cats = snap.exists() ? snap.val() : {};
-        renderCats();
-        refreshCatSelects();
+        renderCats(); refreshCatSelects();
       });
-
       setSyncStatus('online');
     } else {
-      lsLoad();
-      setSyncStatus('offline');
+      lsLoad(); setSyncStatus('offline');
     }
   } catch(e) {
-    console.error(e);
-    lsLoad();
-    setSyncStatus('offline');
+    console.error(e); lsLoad(); setSyncStatus('offline');
   }
   render();
 }
 
 function setSyncStatus(s) {
-  const dot = document.getElementById('syncDot');
-  dot.className = 'sync-dot ' + (s === 'online' ? '' : s);
+  document.getElementById('syncDot').className = 'sync-dot ' + (s === 'online' ? '' : s);
 }
 
-function render() {
-  renderLista();
-  renderEstoque();
-  renderCats();
-  refreshCatSelects();
-  updateBadges();
-}
-
-// ============================================================
-// NAVIGATION
-// ============================================================
+function render() { renderLista(); renderEstoque(); renderCats(); refreshCatSelects(); updateBadges(); }
 
 function goTo(screen, btn) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -1296,10 +1038,6 @@ function goTo(screen, btn) {
   document.getElementById('screen-' + screen).classList.add('active');
   btn.classList.add('active');
 }
-
-// ============================================================
-// LISTA DE COMPRAS
-// ============================================================
 
 function setFiltroLista(f, btn) {
   filtroLista = f;
@@ -1311,60 +1049,42 @@ function setFiltroLista(f, btn) {
 function renderLista() {
   const q = (document.getElementById('searchLista')?.value || '').toLowerCase();
   let items = Object.values(db_lista);
-
   if (filtroLista === 'pendentes') items = items.filter(i => !i.done);
   else if (filtroLista === 'feitos') items = items.filter(i => i.done);
   else if (filtroLista === 'urgentes') items = items.filter(i => i.urgente && !i.done);
-
   if (q) items = items.filter(i => i.nome.toLowerCase().includes(q));
-
-  // Sort: urgentes first, then by name
   items.sort((a, b) => {
     if (a.done !== b.done) return a.done ? 1 : -1;
     if (a.urgente !== b.urgente) return a.urgente ? -1 : 1;
     return a.nome.localeCompare(b.nome);
   });
 
-  // Check alerts
   const urgentes = Object.values(db_lista).filter(i => i.urgente && !i.done);
   const banner = document.getElementById('alertBanner');
   if (urgentes.length > 0) {
     banner.classList.add('show');
     document.getElementById('alertText').innerHTML = `<strong>${urgentes.length} item${urgentes.length > 1 ? 's' : ''} urgente${urgentes.length > 1 ? 's' : ''}</strong>: ${urgentes.map(i => i.nome).join(', ')}`;
-  } else {
-    banner.classList.remove('show');
-  }
+  } else { banner.classList.remove('show'); }
 
   const container = document.getElementById('listaContainer');
-
   if (items.length === 0) {
-    container.innerHTML = `<div class="empty">
-      <div class="empty-icon">🛒</div>
-      <div class="empty-text">Lista vazia!</div>
-      <div class="empty-sub">Adicione itens ou mande do estoque</div>
-    </div>`;
+    container.innerHTML = `<div class="empty"><div class="empty-icon">🛒</div><div class="empty-text">Lista vazia!</div><div class="empty-sub">Adicione itens ou mande do estoque</div></div>`;
     return;
   }
 
-  // Group by category
   const bycat = {};
   items.forEach(i => {
     const cat = i.catId ? (db_cats[i.catId] || { nome: 'Outros', emoji: '📦' }) : { nome: 'Geral', emoji: '🛒' };
-    const key = cat.nome;
-    if (!bycat[key]) bycat[key] = { cat, items: [] };
-    bycat[key].items.push(i);
+    if (!bycat[cat.nome]) bycat[cat.nome] = { cat, items: [] };
+    bycat[cat.nome].items.push(i);
   });
 
   let html = '';
   Object.values(bycat).forEach(({ cat, items: its }) => {
     html += `<div class="section-divider" style="padding:10px 14px 4px; border-bottom:1px solid var(--border)">${cat.emoji} ${cat.nome}</div>`;
     its.forEach(item => {
-      const cat2 = item.catId ? (db_cats[item.catId] || {}) : {};
-      html += `
-      <div class="item-row ${item.done ? 'done-row' : ''}" id="row-${item.id}">
-        <div class="item-check ${item.done ? 'done' : ''}" onclick="toggleItem('${item.id}')">
-          ${item.done ? '✓' : ''}
-        </div>
+      html += `<div class="item-row ${item.done ? 'done-row' : ''}" id="row-${item.id}">
+        <div class="item-check ${item.done ? 'done' : ''}" onclick="toggleItem('${item.id}')">${item.done ? '✓' : ''}</div>
         <div class="item-info">
           <div class="item-name">${item.nome}</div>
           <div class="item-meta">
@@ -1381,7 +1101,6 @@ function renderLista() {
       </div>`;
     });
   });
-
   container.innerHTML = html;
 }
 
@@ -1392,8 +1111,7 @@ function openAddItem(prefill) {
   document.getElementById('inputItemQtd').value = prefill?.qtd || '1';
   document.getElementById('inputItemUnit').value = prefill?.unit || 'un';
   document.getElementById('inputItemObs').value = prefill?.obs || '';
-  urgente = false;
-  updateUrgenteCheck();
+  urgente = false; updateUrgenteCheck();
   refreshCatSelects(prefill?.catId);
   openModal('modalItem');
 }
@@ -1407,8 +1125,7 @@ function openEditItem(id) {
   document.getElementById('inputItemQtd').value = item.qtd || 1;
   document.getElementById('inputItemUnit').value = item.unit || 'un';
   document.getElementById('inputItemObs').value = item.obs || '';
-  urgente = !!item.urgente;
-  updateUrgenteCheck();
+  urgente = !!item.urgente; updateUrgenteCheck();
   refreshCatSelects(item.catId);
   openModal('modalItem');
 }
@@ -1416,27 +1133,19 @@ function openEditItem(id) {
 async function saveItem() {
   const nome = document.getElementById('inputItemNome').value.trim();
   if (!nome) { showToast('Digite o nome do item!'); return; }
-
   const id = document.getElementById('editItemId').value || uid();
   const item = {
-    id,
-    nome,
+    id, nome,
     qtd: parseFloat(document.getElementById('inputItemQtd').value) || 1,
     unit: document.getElementById('inputItemUnit').value,
     catId: document.getElementById('inputItemCat').value || '',
     obs: document.getElementById('inputItemObs').value.trim(),
-    urgente: urgente,
-    done: db_lista[id]?.done || false,
-    fromStock: db_lista[id]?.fromStock || false,
-    ts: Date.now()
+    urgente, done: db_lista[id]?.done || false,
+    fromStock: db_lista[id]?.fromStock || false, ts: Date.now()
   };
-
   db_lista[id] = item;
   await fbSet(`gabi-tali/lista/${id}`, item);
-  lsSave();
-  closeModal('modalItem');
-  renderLista();
-  updateBadges();
+  lsSave(); closeModal('modalItem'); renderLista(); updateBadges();
   showToast('✅ Item salvo!');
 }
 
@@ -1445,47 +1154,30 @@ async function toggleItem(id) {
   if (!item) return;
   item.done = !item.done;
   await fbUpdate(`gabi-tali/lista/${id}`, { done: item.done });
-  lsSave();
-  renderLista();
-  updateBadges();
+  lsSave(); renderLista(); updateBadges();
 }
 
 async function deleteItem(id) {
   delete db_lista[id];
   await fbRemove(`gabi-tali/lista/${id}`);
-  lsSave();
-  renderLista();
-  updateBadges();
+  lsSave(); renderLista(); updateBadges();
   showToast('🗑️ Item removido');
 }
 
 async function limparFeitos() {
   const feitos = Object.keys(db_lista).filter(id => db_lista[id].done);
   if (feitos.length === 0) { showToast('Nenhum item feito!'); return; }
-  for (const id of feitos) {
-    delete db_lista[id];
-    await fbRemove(`gabi-tali/lista/${id}`);
-  }
-  lsSave();
-  renderLista();
-  updateBadges();
+  for (const id of feitos) { delete db_lista[id]; await fbRemove(`gabi-tali/lista/${id}`); }
+  lsSave(); renderLista(); updateBadges();
   showToast(`🗑️ ${feitos.length} item(s) removido(s)`);
 }
 
-function toggleUrgente() {
-  urgente = !urgente;
-  updateUrgenteCheck();
-}
-
+function toggleUrgente() { urgente = !urgente; updateUrgenteCheck(); }
 function updateUrgenteCheck() {
   const el = document.getElementById('checkUrgente');
   el.className = 'form-check' + (urgente ? ' checked' : '');
   el.textContent = urgente ? '✓' : '!';
 }
-
-// ============================================================
-// ESTOQUE
-// ============================================================
 
 function setFiltroEstoque(f, btn) {
   filtroEstoque = f;
@@ -1505,37 +1197,27 @@ const nivelCycle = ['cheio', 'ok', 'baixo', 'zerado'];
 function renderEstoque() {
   const q = (document.getElementById('searchEstoque')?.value || '').toLowerCase();
   let prods = Object.values(db_estoque);
-
   if (filtroEstoque !== 'todos') prods = prods.filter(p => p.nivel === filtroEstoque);
   if (q) prods = prods.filter(p => p.nome.toLowerCase().includes(q));
-
   prods.sort((a, b) => {
     const order = { zerado: 0, baixo: 1, ok: 2, cheio: 3 };
     if (order[a.nivel] !== order[b.nivel]) return order[a.nivel] - order[b.nivel];
     return a.nome.localeCompare(b.nome);
   });
 
-  // Alerts
-  const atenção = Object.values(db_estoque).filter(p => p.nivel === 'baixo' || p.nivel === 'zerado');
+  const atencao = Object.values(db_estoque).filter(p => p.nivel === 'baixo' || p.nivel === 'zerado');
   const banner2 = document.getElementById('estoqueAlertBanner');
-  if (atenção.length > 0) {
+  if (atencao.length > 0) {
     banner2.classList.add('show');
-    document.getElementById('estoqueAlertText').innerHTML = `<strong>${atenção.length} produto(s) precisam de atenção</strong>: ${atenção.map(p => p.nome).join(', ')}`;
-  } else {
-    banner2.classList.remove('show');
-  }
+    document.getElementById('estoqueAlertText').innerHTML = `<strong>${atencao.length} produto(s) precisam de atenção</strong>: ${atencao.map(p => p.nome).join(', ')}`;
+  } else { banner2.classList.remove('show'); }
 
   const container = document.getElementById('estoqueContainer');
   if (prods.length === 0) {
-    container.innerHTML = `<div class="empty">
-      <div class="empty-icon">📦</div>
-      <div class="empty-text">Estoque vazio!</div>
-      <div class="empty-sub">Cadastre os produtos da casa</div>
-    </div>`;
+    container.innerHTML = `<div class="empty"><div class="empty-icon">📦</div><div class="empty-text">Estoque vazio!</div><div class="empty-sub">Cadastre os produtos da casa</div></div>`;
     return;
   }
 
-  // Group by category
   const bycat = {};
   prods.forEach(p => {
     const cat = p.catId ? (db_cats[p.catId] || { nome: 'Outros', emoji: '📦' }) : { nome: 'Geral', emoji: '📦' };
@@ -1549,8 +1231,7 @@ function renderEstoque() {
     ps.forEach(prod => {
       const ni = nivelInfo[prod.nivel] || nivelInfo.ok;
       const rowCls = prod.nivel === 'baixo' ? 'stock-baixo-row' : prod.nivel === 'zerado' ? 'stock-zerado-row' : '';
-      html += `
-      <div class="item-row ${rowCls}">
+      html += `<div class="item-row ${rowCls}">
         <div class="item-info">
           <div class="item-name">${prod.nome}</div>
           <div class="item-meta">
@@ -1567,7 +1248,6 @@ function renderEstoque() {
       </div>`;
     });
   });
-
   container.innerHTML = html;
   updateBadges();
 }
@@ -1601,11 +1281,9 @@ function openEditEstoque(id) {
 async function saveEstoque() {
   const nome = document.getElementById('inputEstoqueNome').value.trim();
   if (!nome) { showToast('Digite o nome!'); return; }
-
   const id = document.getElementById('editEstoqueId').value || uid();
   const prod = {
-    id,
-    nome,
+    id, nome,
     qtd: parseFloat(document.getElementById('inputEstoqueQtd').value) || 0,
     unit: document.getElementById('inputEstoqueUnit').value,
     catId: document.getElementById('inputEstoqueCat').value || '',
@@ -1613,74 +1291,49 @@ async function saveEstoque() {
     obs: document.getElementById('inputEstoqueObs').value.trim(),
     ts: Date.now()
   };
-
   db_estoque[id] = prod;
   await fbSet(`gabi-tali/estoque/${id}`, prod);
-  lsSave();
-  closeModal('modalEstoque');
-  renderEstoque();
+  lsSave(); closeModal('modalEstoque'); renderEstoque();
   showToast('✅ Produto salvo!');
 }
 
 async function cycleNivel(id) {
   const prod = db_estoque[id];
   if (!prod) return;
-  const idx = nivelCycle.indexOf(prod.nivel);
-  prod.nivel = nivelCycle[(idx + 1) % nivelCycle.length];
+  prod.nivel = nivelCycle[(nivelCycle.indexOf(prod.nivel) + 1) % nivelCycle.length];
   await fbUpdate(`gabi-tali/estoque/${id}`, { nivel: prod.nivel });
-  lsSave();
-  renderEstoque();
+  lsSave(); renderEstoque();
 }
 
 async function deleteEstoque(id) {
   delete db_estoque[id];
   await fbRemove(`gabi-tali/estoque/${id}`);
-  lsSave();
-  renderEstoque();
+  lsSave(); renderEstoque();
   showToast('🗑️ Produto removido');
 }
 
 async function sendToLista(estoqueId) {
   const prod = db_estoque[estoqueId];
   if (!prod) return;
-  // Check if already in list
   const existing = Object.values(db_lista).find(i => i.estoqueRef === estoqueId && !i.done);
   if (existing) { showToast('Já está na lista!'); return; }
-
   const id = uid();
-  const item = {
-    id,
-    nome: prod.nome,
-    qtd: 1,
-    unit: prod.unit || 'un',
-    catId: prod.catId || '',
-    obs: prod.obs || '',
-    urgente: false,
-    done: false,
-    fromStock: true,
-    estoqueRef: estoqueId,
-    ts: Date.now()
-  };
+  const item = { id, nome: prod.nome, qtd: 1, unit: prod.unit || 'un', catId: prod.catId || '',
+    obs: prod.obs || '', urgente: false, done: false, fromStock: true, estoqueRef: estoqueId, ts: Date.now() };
   db_lista[id] = item;
   await fbSet(`gabi-tali/lista/${id}`, item);
-  lsSave();
-  renderLista();
-  updateBadges();
+  lsSave(); renderLista(); updateBadges();
   showToast(`🛒 ${prod.nome} adicionado à lista!`);
 }
 
-// ============================================================
-// CATEGORIES
-// ============================================================
+const EMOJI_OPTIONS = ['🥦','🥩','🧀','🍞','🧃','🧹','🧴','🛒','🧊','📦',
+  '🍎','🍌','🥕','🍗','🥚','🥛','🧂','🍚','🌽','🫒',
+  '🫙','🫘','🥜','🍫','🍬','🍵','☕','🧋','🍺','🥤',
+  '🧼','🪥','🧻','🪣','🫧','💊','🩺','🐾','🌸','✨',
+  '🎁','📱','💡','🔧','🏠','🚗','👗','💄','🎮','📚'];
 
-const EMOJI_OPTIONS = ['🥦', '🥩', '🧀', '🍞', '🧃', '🧹', '🧴', '🛒', '🧊', '📦',
-  '🍎', '🍌', '🥕', '🍗', '🥚', '🥛', '🧂', '🍚', '🌽', '🫒',
-  '🫙', '🫘', '🥜', '🍫', '🍬', '🍵', '☕', '🧋', '🍺', '🥤',
-  '🧼', '🪥', '🧻', '🪣', '🫧', '💊', '🩺', '🐾', '🌸', '✨',
-  '🎁', '📱', '💡', '🔧', '🏠', '🚗', '👗', '💄', '🎮', '📚'];
-
-const COLOR_OPTIONS = ['#4f9ef8', '#818cf8', '#7dd3b0', '#e88d8d', '#f472b6', '#a78bfa',
-  '#2563eb', '#0891b2', '#10b981', '#f59e0b', '#ef4444', '#6b7280'];
+const COLOR_OPTIONS = ['#4f9ef8','#818cf8','#7dd3b0','#e88d8d','#f472b6','#a78bfa',
+  '#2563eb','#0891b2','#10b981','#f59e0b','#ef4444','#6b7280'];
 
 function renderEmojiGrid() {
   document.getElementById('emojiGrid').innerHTML = EMOJI_OPTIONS.map(e =>
@@ -1690,42 +1343,25 @@ function renderEmojiGrid() {
 
 function renderColorRow() {
   document.getElementById('colorRow').innerHTML = COLOR_OPTIONS.map(c =>
-    `<div class="color-swatch ${c === selectedColor ? 'selected' : ''}"
-      style="background:${c}" onclick="pickColor('${c}')"></div>`
+    `<div class="color-swatch ${c === selectedColor ? 'selected' : ''}" style="background:${c}" onclick="pickColor('${c}')"></div>`
   ).join('');
 }
 
-function pickEmoji(e) {
-  selectedEmoji = e;
-  renderEmojiGrid();
-  updateCatPreview();
-}
-
-function pickColor(c) {
-  selectedColor = c;
-  renderColorRow();
-  updateCatPreview();
-}
+function pickEmoji(e) { selectedEmoji = e; renderEmojiGrid(); updateCatPreview(); }
+function pickColor(c) { selectedColor = c; renderColorRow(); updateCatPreview(); }
 
 function updateCatPreview() {
   document.getElementById('previewBox').style.background = selectedColor + '30';
   document.getElementById('previewBox').textContent = selectedEmoji;
-  const nome = document.getElementById('inputCatNome')?.value || 'Nova categoria';
-  document.getElementById('previewName').textContent = nome || 'Nova categoria';
+  document.getElementById('previewName').textContent = document.getElementById('inputCatNome')?.value || 'Nova categoria';
 }
 
 function renderCats() {
   const container = document.getElementById('catListContainer');
   const cats = Object.values(db_cats).sort((a, b) => (a.padrao ? 1 : 0) - (b.padrao ? 1 : 0) || a.nome.localeCompare(b.nome));
-
-  if (cats.length === 0) {
-    container.innerHTML = '<div class="empty"><div class="empty-text">Nenhuma categoria</div></div>';
-    return;
-  }
-
+  if (cats.length === 0) { container.innerHTML = '<div class="empty"><div class="empty-text">Nenhuma categoria</div></div>'; return; }
   const estoqueCount = id => Object.values(db_estoque).filter(p => p.catId === id).length;
   const listaCount = id => Object.values(db_lista).filter(i => i.catId === id && !i.done).length;
-
   container.innerHTML = cats.map(cat => `
     <div class="manage-row">
       <div class="manage-emoji-preview" style="background:${cat.cor || '#e8b86d'}30">${cat.emoji}</div>
@@ -1744,12 +1380,8 @@ function openAddCat() {
   document.getElementById('modalCatTitle').textContent = 'Nova categoria';
   document.getElementById('editCatId').value = '';
   document.getElementById('inputCatNome').value = '';
-  editCatIsDefault = false;
-  selectedEmoji = '🛒';
-  selectedColor = '#4f9ef8';
-  renderEmojiGrid();
-  renderColorRow();
-  updateCatPreview();
+  editCatIsDefault = false; selectedEmoji = '🛒'; selectedColor = '#4f9ef8';
+  renderEmojiGrid(); renderColorRow(); updateCatPreview();
   openModal('modalCat');
 }
 
@@ -1760,57 +1392,37 @@ function openEditCat(id) {
   document.getElementById('editCatId').value = id;
   document.getElementById('inputCatNome').value = cat.nome;
   editCatIsDefault = !!cat.padrao;
-  selectedEmoji = cat.emoji;
-  selectedColor = cat.cor || '#e8b86d';
-  renderEmojiGrid();
-  renderColorRow();
-  updateCatPreview();
+  selectedEmoji = cat.emoji; selectedColor = cat.cor || '#e8b86d';
+  renderEmojiGrid(); renderColorRow(); updateCatPreview();
   openModal('modalCat');
 }
 
 async function saveCat() {
   const nome = document.getElementById('inputCatNome').value.trim();
   if (!nome) { showToast('Digite o nome!'); return; }
-
   const id = document.getElementById('editCatId').value || uid();
-  const cat = {
-    id,
-    nome,
-    emoji: selectedEmoji,
-    cor: selectedColor,
-    padrao: editCatIsDefault || false,
-  };
-
+  const cat = { id, nome, emoji: selectedEmoji, cor: selectedColor, padrao: editCatIsDefault || false };
   db_cats[id] = cat;
   await fbSet(`gabi-tali/cats/${id}`, cat);
-  lsSave();
-  closeModal('modalCat');
-  renderCats();
-  refreshCatSelects();
+  lsSave(); closeModal('modalCat'); renderCats(); refreshCatSelects();
   showToast('✅ Categoria salva!');
 }
 
 async function deleteCat(id) {
   const cat = db_cats[id];
   if (!cat) return;
-  const hasStock = Object.values(db_estoque).some(p => p.catId === id);
-  const hasList = Object.values(db_lista).some(i => i.catId === id);
-  if (hasStock || hasList) {
-    showToast('⚠️ Categoria em uso, não pode excluir');
-    return;
+  if (Object.values(db_estoque).some(p => p.catId === id) || Object.values(db_lista).some(i => i.catId === id)) {
+    showToast('⚠️ Categoria em uso, não pode excluir'); return;
   }
   delete db_cats[id];
   await fbRemove(`gabi-tali/cats/${id}`);
-  lsSave();
-  renderCats();
-  refreshCatSelects();
+  lsSave(); renderCats(); refreshCatSelects();
   showToast('🗑️ Categoria removida');
 }
 
 function refreshCatSelects(selectedId, targetId) {
   const cats = Object.values(db_cats).sort((a, b) => a.nome.localeCompare(b.nome));
   const opts = cats.map(c => `<option value="${c.id}" ${c.id === selectedId ? 'selected' : ''}>${c.emoji} ${c.nome}</option>`).join('');
-
   if (targetId) {
     const el = document.getElementById(targetId);
     if (el) el.innerHTML = opts;
@@ -1822,57 +1434,36 @@ function refreshCatSelects(selectedId, targetId) {
   }
 }
 
-// ============================================================
-// BADGES & MISC
-// ============================================================
-
 function updateBadges() {
   const pendentes = Object.values(db_lista).filter(i => !i.done).length;
   const badge = document.getElementById('badgeLista');
   badge.style.display = pendentes > 0 ? 'flex' : 'none';
   badge.textContent = pendentes > 99 ? '99+' : pendentes;
-
   const alerta = Object.values(db_estoque).filter(p => p.nivel === 'baixo' || p.nivel === 'zerado').length;
   const badge2 = document.getElementById('badgeEstoque');
   badge2.style.display = alerta > 0 ? 'flex' : 'none';
   badge2.textContent = alerta;
 }
 
-// ============================================================
-// MODAL
-// ============================================================
+function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
 
-function openModal(id) {
-  document.getElementById(id).classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal(id) {
-  document.getElementById(id).classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-// Close on overlay click
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', e => {
-    if (e.target === overlay) closeModal(overlay.id);
-  });
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(overlay.id); });
 });
 
-// Preview update on name input
 document.getElementById('inputCatNome')?.addEventListener('input', updateCatPreview);
-
-// ============================================================
-// TOAST
-// ============================================================
 
 let toastTimer;
 function showToast(msg) {
   const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
+  t.textContent = msg; t.classList.add('show');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js');
 }
 </script>
 </body>
